@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>llnuuu — Apps & Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --bg:#f8f7f4;
+      --card:#ffffff;
+      --text:#1a1a1a;
+      --sub:#7a7a7a;
+      --accent:#3b6df5;
+      --accent-soft:#eaf0ff;
+      --border:#ececec;
+      --radius:18px;
+    }
+
+    body{
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      padding:60px 24px 80px;
+      line-height:1.6;
+    }
+
+    /* ---- dotted background texture ---- */
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background-image:radial-gradient(circle,#d4d4d4 .8px,transparent .8px);
+      background-size:22px 22px;
+      opacity:.35;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .wrapper{
+      position:relative;
+      z-index:1;
+      max-width:560px;
+      width:100%;
+    }
+
+    /* ---- header ---- */
+    .header{
+      text-align:center;
+      margin-bottom:48px;
+    }
+
+    .avatar{
+      width:72px;height:72px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--accent),#7b5cf5);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 18px;
+      font-family:'Sora',sans-serif;
+      font-size:28px;
+      color:#fff;
+      box-shadow:0 4px 20px rgba(59,109,245,.25);
+    }
+
+    .header h1{
+      font-family:'Sora',sans-serif;
+      font-size:26px;
+      font-weight:700;
+      letter-spacing:-.3px;
+      margin-bottom:6px;
+    }
+
+    .header p{
+      color:var(--sub);
+      font-size:15px;
+      font-weight:300;
+    }
+
+    /* ---- section ---- */
+    .section-label{
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      color:var(--sub);
+      margin-bottom:16px;
+    }
+
+    /* ---- project card ---- */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:28px 26px;
+      margin-bottom:16px;
+      border:1px solid var(--border);
+      transition:transform .2s ease, box-shadow .2s ease;
+      cursor:pointer;
+      text-decoration:none;
+      display:block;
+      color:inherit;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 8px 30px rgba(0,0,0,.06);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .card-icon{
+      width:48px;height:48px;
+      border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;
+      flex-shrink:0;
+    }
+
+    .card-icon.gcal{
+      background:linear-gradient(135deg,#4285f4,#34a853);
+      color:#fff;
+    }
+
+    .card-icon.placeholder{
+      background:var(--accent-soft);
+      color:var(--accent);
+    }
+
+    .card-title{
+      font-family:'Sora',sans-serif;
+      font-size:17px;
+      font-weight:600;
+    }
+
+    .card-subtitle{
+      font-size:13px;
+      color:var(--sub);
+      margin-top:2px;
+    }
+
+    .card-desc{
+      font-size:14px;
+      color:#555;
+      font-weight:300;
+      line-height:1.65;
+    }
+
+    .tag-row{
+      display:flex;
+      gap:8px;
+      margin-top:14px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      font-size:11px;
+      font-weight:500;
+      padding:4px 12px;
+      border-radius:20px;
+      background:var(--accent-soft);
+      color:var(--accent);
+    }
+
+    /* ---- coming soon card ---- */
+    .card.soon{
+      border:1px dashed var(--border);
+      background:transparent;
+      text-align:center;
+      cursor:default;
+    }
+
+    .card.soon:hover{
+      transform:none;
+      box-shadow:none;
+    }
+
+    .card.soon p{
+      color:var(--sub);
+      font-size:14px;
+      font-weight:300;
+    }
+
+    /* ---- contact button ---- */
+    .contact-section{
+      margin-top:40px;
+      text-align:center;
+    }
+
+    .contact-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 32px;
+      border-radius:50px;
+      background:var(--text);
+      color:#fff;
+      font-family:'DM Sans',sans-serif;
+      font-size:15px;
+      font-weight:500;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease;
+      letter-spacing:.2px;
+    }
+
+    .contact-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 24px rgba(0,0,0,.15);
+    }
+
+    .contact-btn svg{
+      width:16px;height:16px;
+    }
+
+    /* ---- footer ---- */
+    footer{
+      margin-top:56px;
+      text-align:center;
+      font-size:12px;
+      color:var(--sub);
+      font-weight:300;
+    }
+
+    /* ---- responsive ---- */
+    @media(max-width:480px){
+      body{padding:40px 16px 60px}
+      .header h1{font-size:22px}
+      .card{padding:22px 20px}
+    }
+
+    /* ---- fade-in animation ---- */
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(16px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .header{animation:fadeUp .5s ease both}
+    .section-label{animation:fadeUp .5s ease .1s both}
+    .card:nth-child(2){animation:fadeUp .5s ease .15s both}
+    .card:nth-child(3){animation:fadeUp .5s ease .25s both}
+    .contact-section{animation:fadeUp .5s ease .35s both}
+    footer{animation:fadeUp .5s ease .45s both}
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="avatar">L</div>
+      <h1>llnuuu</h1>
+      <p>Building useful little apps</p>
+    </div>
+
+    <!-- Projects -->
+    <div class="section-label">Projects</div>
+
+    <a class="card" href="https://llnuuu.github.io/GCAL_Analyzer" target="_blank" rel="noopener">
+      <div class="card-top">
+        <div class="card-icon gcal">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="card-title">GCAL Analyzer</div>
+          <div class="card-subtitle">Google Calendar analytics tool</div>
+        </div>
+      </div>
+      <div class="card-desc">
+        Visualize and analyze how you spend your time through your Google Calendar data. Get insights on meeting patterns, focus time, and more.
+      </div>
+      <div class="tag-row">
+        <span class="tag">Analytics</span>
+        <span class="tag">Productivity</span>
+        <span class="tag">Web App</span>
+      </div>
+    </a>
+
+    <div class="card soon">
+      <p>More projects coming soon ✨</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-section">
+      <a class="contact-btn" href="mailto:your-email@example.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Me
+      </a>
+    </div>
+
+    <footer>© 2026 llnuuu</footer>
+
+  </div>
+
+</body>
+</html>
